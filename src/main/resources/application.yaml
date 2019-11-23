@@ -1,0 +1,15 @@
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  logging:
+    file: /usr/local/logs
+    level:
+      com.project.package: debug
