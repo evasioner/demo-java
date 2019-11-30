@@ -9,6 +9,6 @@ spring:
         format_sql: true
     show-sql: true
   logging:
-    file: /usr/local/logs
     level:
-      com.project.package: debug
+      org.springframework: INFO
+      org.springframework.web: DEBUG

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "members")
-public class Members {
+public class Members implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger memberNo;

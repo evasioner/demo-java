@@ -2,16 +2,23 @@ package com.example.demo.services;
 
 import com.example.demo.domain.Members;
 import com.example.demo.repositories.MembersRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
 
 @Service
-public class MembersService {
-    @Autowired
-    private MembersRepository memberRepository;
+public class MembersService implements UserDetailsService {
+    private final MembersRepository memberRepository;
+
+    MembersService(MembersRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     public List<Members> getMembers() {
         return memberRepository.findAll();
@@ -21,9 +28,15 @@ public class MembersService {
         return memberRepository.findById(memberNo).get();
     }
 
-//    public Members getMemberByUsername(String username) {
-//        return memberRepository.
-//    }
+    @Transactional
+    public Members joinMembers(Members members) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        members.setPassword(passwordEncoder.encode(members.getPassword()));
+        return memberRepository.save(members);
+    }
 
-
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
 }

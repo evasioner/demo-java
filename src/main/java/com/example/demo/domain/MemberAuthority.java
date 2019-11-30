@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.math.BigInteger;
 
 @Entity
@@ -16,7 +17,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "member_authority")
-public class MemberAuthority {
+public class MemberAuthority implements Serializable {
     @Id
     private BigInteger memberNo;
     @NotEmpty
