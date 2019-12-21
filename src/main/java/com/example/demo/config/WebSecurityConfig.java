@@ -13,13 +13,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.sql.DataSource;
 
 @EnableWebSecurity
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
     private final MembersService membersService;
     private PasswordEncoder passwordEncoder;
 
-    public WebSecurityConfiguration(final DataSource dataSource, MembersService membersService) {
+    public WebSecurityConfig(final DataSource dataSource, MembersService membersService) {
         this.dataSource = dataSource;
         this.membersService = membersService;
     }
