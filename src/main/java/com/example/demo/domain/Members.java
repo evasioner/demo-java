@@ -1,16 +1,17 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity
@@ -26,13 +27,13 @@ public class Members implements Serializable {
     @Column(nullable = false, unique = true)
     private String username;
     @NotEmpty
+    @JsonIgnore
     private String password;
+    @NotEmpty
+    private String role;
+    @CreationTimestamp
     private Date createdAt;
+    @UpdateTimestamp
     private Date updatedAt;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "member_authority",
-            joinColumns = {@JoinColumn(name = "memberNo")},
-            inverseJoinColumns = {@JoinColumn(name = "authorityNo")})
-    private Set<Authority> authorities = new HashSet<>();
 }
 

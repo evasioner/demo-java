@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.domain.Members;
+import com.example.demo.domain.Roles;
 import com.example.demo.repositories.MembersRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,6 +33,7 @@ public class MembersService implements UserDetailsService {
     public Members joinMembers(Members members) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         members.setPassword(passwordEncoder.encode(members.getPassword()));
+        members.setRole(Roles.USER.getValue());
         return memberRepository.save(members);
     }
 

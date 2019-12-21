@@ -37,6 +37,4 @@ public class MembersController extends BaseController {
     public Response<Members> getMemberByMemberNo(@PathVariable BigInteger memberNo) {
         return response(memberService.getMemberByMemberNo(memberNo));
     }
-
-
 }
