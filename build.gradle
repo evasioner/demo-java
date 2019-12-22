@@ -22,6 +22,8 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 ext {
@@ -29,18 +31,23 @@ ext {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    compile('org.springframework.security.oauth:spring-security-oauth2')
     compile('io.springfox:springfox-swagger2:2.9.2')
     compile('io.springfox:springfox-swagger-ui:2.9.2')
-    compile('org.springframework.boot:spring-boot-starter-security')
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.apache.commons:commons-text:1.6'
     compile("mysql:mysql-connector-java:8.0.12")
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('com.nimbusds:nimbus-jose-jwt')
+    compile('org.springframework.security:spring-security-jwt')
+    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure')
+
 }
 
 asciidoctor {

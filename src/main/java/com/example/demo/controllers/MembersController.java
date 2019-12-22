@@ -1,13 +1,13 @@
 package com.example.demo.controllers;
 
 import com.example.demo.domain.Members;
+import com.example.demo.exception.NotFoundMemberException;
 import com.example.demo.response.Response;
 import com.example.demo.services.MembersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @RequestMapping("/members")
@@ -34,7 +34,7 @@ public class MembersController extends BaseController {
 
     @ApiOperation(value = "회원 조회", notes = "특정 회원을 조회.")
     @GetMapping("/{memberNo}")
-    public Response<Members> getMemberByMemberNo(@PathVariable BigInteger memberNo) {
+    public Response<Members> getMemberByMemberNo(@PathVariable Long memberNo) throws NotFoundMemberException {
         return response(memberService.getMemberByMemberNo(memberNo));
     }
 }

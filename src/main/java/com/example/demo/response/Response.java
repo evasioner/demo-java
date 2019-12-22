@@ -1,6 +1,5 @@
 package com.example.demo.response;
 
-import com.example.demo.exception.ErrorCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Getter;
@@ -13,15 +12,15 @@ public class Response<T> {
     private int status;
     private String result;
     private T data;
-    private Error error;
+    private String error;
 
-    private Response(T data) {
+    public Response(T data) {
         this.status = 200;
         this.result = "success";
         this.data = data;
     }
 
-    private Response(int status, Error error) {
+    Response(int status, String error) {
         this.status = status;
         this.result = "error";
         this.error = error;
@@ -31,11 +30,7 @@ public class Response<T> {
         return new Response<>(result);
     }
 
-    public static Response<Error> err(int status, Error error) {
+    public static Response<Error> err(int status, String error) {
         return new Response<>(status, error);
-    }
-
-    public static Response<Error> err(ErrorCode errorCode, Error error) {
-        return err(errorCode.getStatus().value(), error);
     }
 }

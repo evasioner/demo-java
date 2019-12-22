@@ -2,9 +2,9 @@ package com.example.demo.config;
 
 import com.example.demo.services.MembersService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -24,18 +24,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.membersService = membersService;
     }
 
+
+    @Override
+    public void configure(final WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(
+                "/css/**",
+                "/js/**", "/img/**", "/lib/**",
+                "/swagger-resources/**",
+                "/swagger-ui.html**",
+                "/webjars/**",
+                "favicon.ico");
+    }
+
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET,
-                        "/v2/api-docs",
-                        "/swagger-resources/**",
-                        "/swagger-ui.html**",
-                        "/webjars/**",
-                        "favicon.ico")
-                .permitAll();
+        http.formLogin().usernameParameter("username").passwordParameter("password");
     }
 
     @Bean

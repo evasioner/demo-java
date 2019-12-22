@@ -1,17 +1,17 @@
 package com.example.demo.domain;
 
+import com.example.demo.domain.types.converters.LocalDateTimeConverter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -19,10 +19,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "members")
-public class Members implements Serializable {
+public class Members extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger memberNo;
+    private Long memberNo;
     @NotEmpty
     @Column(nullable = false, unique = true)
     private String username;
@@ -31,9 +31,15 @@ public class Members implements Serializable {
     private String password;
     @NotEmpty
     private String role;
-    @CreationTimestamp
-    private Date createdAt;
-    @UpdateTimestamp
-    private Date updatedAt;
+    @CreatedDate
+    @Column(updatable = false)
+    @Convert(converter = LocalDateTimeConverter.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private LocalDateTime createdAt;
+    @CreatedDate
+    @LastModifiedDate
+    @Convert(converter = LocalDateTimeConverter.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private LocalDateTime updatedAt;
 }
 
