@@ -4,9 +4,6 @@ import com.example.demo.domain.Members;
 import com.example.demo.domain.Roles;
 import com.example.demo.exception.NotFoundMemberException;
 import com.example.demo.repositories.MembersRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class MembersService implements UserDetailsService {
+public class MembersService {
     private final MembersRepository memberRepository;
 
     MembersService(MembersRepository memberRepository) {
@@ -35,10 +32,5 @@ public class MembersService implements UserDetailsService {
         members.setPassword(passwordEncoder.encode(members.getPassword()));
         members.setRole(Roles.USER.getValue());
         return memberRepository.save(members);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
     }
 }
