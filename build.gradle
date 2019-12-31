@@ -52,6 +52,8 @@ dependencies {
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile('org.springframework.cloud:spring-cloud-starter-openfeign')
+    compile group: 'org.keycloak', name: 'keycloak-spring-boot-2-adapter', version: '7.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
 }
 
