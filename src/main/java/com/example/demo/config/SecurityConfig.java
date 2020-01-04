@@ -53,7 +53,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/**").authenticated()
+                .antMatchers("/members").authenticated()
                 .anyRequest().authenticated();
     }
 }
