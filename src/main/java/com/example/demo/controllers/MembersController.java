@@ -6,6 +6,7 @@ import com.example.demo.response.Response;
 import com.example.demo.services.MembersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +29,8 @@ public class MembersController extends BaseController {
 
     @ApiOperation(value = "회원 가입", notes = "회원 가입")
     @PostMapping("")
-    public Response<Members> joinMembers(Members members) {
-        return response(memberService.joinMembers(members));
+    public Response<UserRepresentation> signUp(UserRepresentation user) {
+        return response(memberService.signUp(user));
     }
 
     @ApiOperation(value = "회원 조회", notes = "특정 회원을 조회.")

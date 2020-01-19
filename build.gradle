@@ -53,8 +53,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile('org.springframework.cloud:spring-cloud-starter-openfeign')
     compile group: 'org.keycloak', name: 'keycloak-spring-boot-2-adapter', version: '7.0.0'
+    compile group: 'org.keycloak', name: 'keycloak-admin-client', version: '7.0.1'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-
+    compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.4.0.Final'
 }
 
 asciidoctor {
