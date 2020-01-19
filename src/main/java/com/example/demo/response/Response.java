@@ -20,7 +20,7 @@ public class Response<T> {
         this.data = data;
     }
 
-    Response(int status, String error) {
+    public Response(int status, String error) {
         this.status = status;
         this.result = "error";
         this.error = error;

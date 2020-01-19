@@ -20,5 +20,7 @@ keycloak:
   auth-server-url: http://localhost:8180/auth
   ssl-required: external
   public-client: true
+  credentials:
+    secret: 6ffa2491-1720-447a-ad21-65ca6da9dada
   principal-attribute: preferred_username
 

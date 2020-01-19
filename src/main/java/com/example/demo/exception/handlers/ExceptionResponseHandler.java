@@ -1,6 +1,7 @@
-package com.example.demo.response;
+package com.example.demo.exception.handlers;
 
 import com.example.demo.exception.BaseException;
+import com.example.demo.response.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
