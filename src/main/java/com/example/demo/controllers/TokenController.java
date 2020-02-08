@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/tokens")
+@RequestMapping("/mit ")
 @Api(tags = {"2. Token"})
 @RestController
 public class TokenController extends BaseController {
